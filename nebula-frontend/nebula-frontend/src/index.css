@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { height: 100%; }
+  body { height: 100%; background: #050a1a; }
+  #root { height: 100%; }
+}
+
+@layer components {
+  .nebula-btn {
+    @apply px-4 py-2 rounded font-body font-medium transition-all duration-200;
+  }
+  .nebula-btn-primary {
+    @apply nebula-btn bg-nebula-pink text-white hover:shadow-pink hover:scale-105 active:scale-95;
+  }
+  .nebula-btn-ghost {
+    @apply nebula-btn border border-nebula-border text-nebula-muted hover:border-nebula-cyan hover:text-nebula-cyan;
+  }
+  .nebula-input {
+    @apply w-full bg-nebula-navy border border-nebula-border rounded px-4 py-3 text-nebula-text placeholder-nebula-muted focus:outline-none focus:border-nebula-cyan focus:shadow-cyan transition-all duration-200 font-body text-sm;
+  }
+  .star {
+    @apply absolute rounded-full bg-white animate-twinkle;
+  }
+  .glow-text-pink {
+    text-shadow: 0 0 20px #ff2d78, 0 0 40px #ff2d7866;
+  }
+  .glow-text-cyan {
+    text-shadow: 0 0 20px #00e5ff, 0 0 40px #00e5ff66;
+  }
+  .constellation-line {
+    stroke: #00e5ff33;
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+  }
+}
+
+/* Planet profile ring */
+.planet-ring {
+  background: conic-gradient(from 0deg, #ff2d78, #00e5ff, #7b2fff, #ff2d78);
+  border-radius: 50%;
+  padding: 2px;
+  animation: orbit-ring 4s linear infinite;
+}
+
+@keyframes orbit-ring {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.planet-inner {
+  border-radius: 50%;
+  background: #0a1628;
+}
+
+/* Message bubble star glow */
+.msg-sent {
+  background: linear-gradient(135deg, #1a0a2e, #2d0a4e);
+  border: 1px solid #7b2fff44;
+  box-shadow: 0 0 12px #7b2fff22;
+}
+
+.msg-received {
+  background: linear-gradient(135deg, #0a1628, #0d1f3e);
+  border: 1px solid #00e5ff22;
+  box-shadow: 0 0 12px #00e5ff11;
+}
+
+/* Status bar */
+.status-online { background: #00e5ff; box-shadow: 0 0 8px #00e5ff; }
+.status-offline { background: #6b7fa8; }
+
+/* Supernova reaction effect */
+@keyframes supernovaRing {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+.supernova-ring {
+  animation: supernovaRing 0.8s ease-out forwards;
+  border: 2px solid #ff2d78;
+  border-radius: 50%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+/* Typing dots */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00e5ff;
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sidebar-mobile-hidden { display: none; }
+  .chat-mobile-full { width: 100% !important; }
+}
